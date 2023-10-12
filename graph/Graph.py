@@ -113,7 +113,7 @@ class Graph(object):
                 if self.distfromS[connected_vertex] == float("inf"):
                     q.append(connected_vertex)
                     self.distfromS[connected_vertex] = (
-                        self.distfromS[processing_vertex] + 1
+                            self.distfromS[processing_vertex] + 1
                     )
 
 
@@ -141,23 +141,23 @@ class WeightedGraph(object):
         self.dist = {}
         for vertex in self._vertices:
             self.dist[vertex] = float("inf")
-        self.dist[start]=0
-        i=len(self._vertices)
-        smallest=start
-        alarm=-1
-        while i>0:
-            smallest=float("inf")
+        self.dist[start] = 0
+        i = len(self._vertices)
+        alarm = -1
+        while i > 0:
+            smallest = float("inf")
+            smallest_v = self._vertices[0]
             for vertex in self._vertices:
-                if self.dist[vertex]<smallest and self.dist[vertex]>alarm:
-                    smallest=self.dist[vertex]
-                    smallest_v=vertex
+                if alarm < self.dist[vertex] < smallest:
+                    smallest = self.dist[vertex]
+                    smallest_v = vertex
             for connected_vertex in self._graph[smallest_v]:
                 if (self.dist[connected_vertex[0]] > self.dist[smallest_v] +
                         int(connected_vertex[1])):
-                        self.dist[connected_vertex[0]] = (self.dist[smallest_v] +
-                        int(connected_vertex[1]))
-            alarm=self.dist[smallest_v]
-            i-=1
+                    self.dist[connected_vertex[0]] = (self.dist[smallest_v] +
+                                                      int(connected_vertex[1]))
+            alarm = self.dist[smallest_v]
+            i -= 1
 
     def dijkstra(self):
         pass

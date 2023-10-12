@@ -124,7 +124,7 @@ class WeightedGraph(object):
             next_vertex = source
             next_alarm = float("Inf")
             for vertex in self._vertices:
-                if self._dist[vertex] > clock and self._dist[vertex] < next_alarm:
+                if clock < self._dist[vertex] < next_alarm:
                     next_vertex = vertex
                     next_alarm = self._dist[vertex]
             clock = self._dist[next_vertex]
